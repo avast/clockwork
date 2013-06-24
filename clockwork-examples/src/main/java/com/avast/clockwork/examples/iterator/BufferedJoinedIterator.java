@@ -10,7 +10,6 @@ import java.util.LinkedList;
  */
 
 public class BufferedJoinedIterator<T> implements Iterator<T> {
-
     private final Iterator<T> joinedIterator;
 
     public BufferedJoinedIterator(Iterator<T>... iterators) {
@@ -24,17 +23,14 @@ public class BufferedJoinedIterator<T> implements Iterator<T> {
         joinedIterator = allElems.iterator();
     }
 
-    @Override
     public boolean hasNext() {
         return joinedIterator.hasNext();
     }
 
-    @Override
     public T next() {
         return joinedIterator.next();
     }
 
-    @Override
     public void remove() {
         throw new UnsupportedOperationException();
     }
