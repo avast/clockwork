@@ -1,0 +1,34 @@
+http://www.cs.waikato.ac.nz/ml/index.html # Java machine learning library/tool
+
+http://www.slideshare.net/mgrcar/text-and-text-stream-mining-tutorial-15137759
+
+http://www.johndcook.com/standard_deviation.html # running variance
+
+http://boundary.com/blog/2013/05/14/approximate-heavy-hitters-the-spacesaving-algorithm/
+
+http://www2.research.att.com/~marioh/papers/vldb08-2.pdf # Finding frequent items in data streams
+
+http://www.lsi.upc.edu/~abifet/Prova/ # ADWIN - adaptive sliding window
+http://adaptive-mining.sourceforge.net/?page_id=20
+http://adaptive-mining.sourceforge.net # book
+http://books.google.cz/books?id=uwiwHFLbbDAC&pg=PA53&lpg=PA53&dq=adwin+adaptive+sliding+window&source=bl&ots=9PJf5wElws&sig=9dan9K_okTxD3Ivi1NGc5a54jkY&hl=cs&sa=X&ei=S23AUfuAOoOFOOeEgMAO&sqi=2&ved=0CH8Q6AEwCQ#v=onepage&q=adwin%20adaptive%20sliding%20window&f=false
+
+http://www.slideshare.net/abifet/kalman-filters-and-adaptive-windows-for-learning-in-data-streams
+
+http://code.google.com/p/moa/ # real-time analytics for data streams
+
+http://horicky.blogspot.cz/2011/04/k-means-clustering-in-map-reduce.html
+
+http://www.matthiasmann.de/content/view/24/26/
+
+http://ssw.jku.at/General/Staff/LS/coro/CoroIntroduction.pdf
+
+http://en.wikipedia.org/wiki/Cobweb_(clustering) # incremental conceptual clustering
+
+http://nickjenkin.com/blog/?p=85
+
+https://en.wikipedia.org/wiki/Naive_Bayes_classifier
+
+http://mahout.apache.org
+
+http://en.wikipedia.org/wiki/K-means_clustering
