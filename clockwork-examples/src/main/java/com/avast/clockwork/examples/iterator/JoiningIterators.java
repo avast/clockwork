@@ -19,7 +19,8 @@ public class JoiningIterators {
         Iterator<String> iterator2 = Collections.<String>emptyList().iterator();
         Iterator<String> iterator3 = Arrays.asList("x").iterator();
 
-        Iterator<String> joinedIterators = new CoJoinedIterators<String>(
+        //Iterator<String> joinedIterators = new CoJoinedIterators<String>(
+        Iterator<String> joinedIterators = new BufferedJoinedIterator<String>(
                 iterator1,
                 iterator2,
                 iterator3
