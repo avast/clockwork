@@ -18,7 +18,7 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
     private final TransformerInstance firstInstance;
     private final Map<Transformer, TransformerInstance> transformerChainStepMap =
             new HashMap<Transformer, TransformerInstance>();
-    private final Accumulator<OK, OV> accumulator;
+    private final Accumulator<? super OK, ? super OV> accumulator;
     private long emitCounter = 0;
 
     private static final ThreadLocal<Stack<Execution>> executionStackTL = new ThreadLocal<Stack<Execution>>();
@@ -58,7 +58,7 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
 
     }
 
-    public Accumulator<OK, OV> getAccumulator() {
+    public Accumulator<? super OK, ? super OV> getAccumulator() {
         return accumulator;
     }
 
@@ -82,7 +82,7 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         }
     }
 
-    private Execution(TransformerStep<IK, IV, OK, OV> lastStep, Accumulator<OK, OV> accumulator)
+    private Execution(TransformerStep<IK, IV, OK, OV> lastStep, Accumulator<? super OK, ? super OV> accumulator)
             throws Exception {
 
         execConfig = lastStep.execConfig;
@@ -454,7 +454,7 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
             return transformerPrototype;
         }
 
-        public Builder<IK, IV, OK, OV> accumulator(Accumulator<OK, OV> accumulator) {
+        public Builder<IK, IV, OK, OV> accumulator(Accumulator<? super OK, ? super OV> accumulator) {
             return new Builder<IK, IV, OK, OV>(this, accumulator);
         }
 
@@ -474,11 +474,11 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
             super(prev, mapperPrototype, execConfig);
         }
 
-        public <TK, TV> ReducerTransformerStep<IK, IV, TK, TV> reducer(Reducer<OK, OV, TK, TV> reducerPrototype) {
+        public <TK, TV> ReducerTransformerStep<IK, IV, TK, TV> reducer(Reducer<? super OK, ? super OV, TK, TV> reducerPrototype) {
             return new ReducerTransformerStep<IK, IV, TK, TV>(this, reducerPrototype, execConfig);
         }
 
-        public <TK, TV> MapperTransformerStep<IK, IV, TK, TV> mapper(Mapper<OK, OV, TK, TV> mapperPrototype) {
+        public <TK, TV> MapperTransformerStep<IK, IV, TK, TV> mapper(Mapper<? super OK, ? super OV, TK, TV> mapperPrototype) {
             return new MapperTransformerStep<IK, IV, TK, TV>(this, mapperPrototype, execConfig);
         }
 
@@ -503,11 +503,11 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
             super(prev, reducerPrototype, execConfig);
         }
 
-        public <TK, TV> MapperTransformerStep<IK, IV, TK, TV> mapper(Mapper<OK, OV, TK, TV> mapperPrototype) {
+        public <TK, TV> MapperTransformerStep<IK, IV, TK, TV> mapper(Mapper<? super OK, ? super OV, TK, TV> mapperPrototype) {
             return new MapperTransformerStep<IK, IV, TK, TV>(this, mapperPrototype, execConfig);
         }
 
-        public <TK, TV> ReducerTransformerStep<IK, IV, TK, TV> reducer(Reducer<OK, OV, TK, TV> reducerPrototype) {
+        public <TK, TV> ReducerTransformerStep<IK, IV, TK, TV> reducer(Reducer<? super OK, ? super OV, TK, TV> reducerPrototype) {
             return new ReducerTransformerStep<IK, IV, TK, TV>(this, reducerPrototype, execConfig);
         }
 
@@ -525,9 +525,9 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
 
     public static class Builder<IK, IV, OK, OV> {
         private final TransformerStep<IK, IV, OK, OV> lastTransformerStep;
-        private final Accumulator<OK, OV> accumulator;
+        private final Accumulator<? super OK, ? super OV> accumulator;
 
-        private Builder(TransformerStep<IK, IV, OK, OV> lastTransformerStep, Accumulator<OK, OV> accumulator) {
+        private Builder(TransformerStep<IK, IV, OK, OV> lastTransformerStep, Accumulator<? super OK, ? super OV> accumulator) {
             this.lastTransformerStep = lastTransformerStep;
             this.accumulator = accumulator;
         }

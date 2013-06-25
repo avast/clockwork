@@ -9,9 +9,10 @@ import java.util.Map;
 /**
  *
  * <p>Try it by
- * <pre>curl -v -X POST -H "Content-Type: application/json" -d '{"feeds": [{"class":"male","attrs":[1.23, 2.44444, 3]}]}' http://localhost:9999</pre>
+ * <pre>curl -v -X POST -H "Content-Type: application/json" -d '{"feeds": [{"class":"male","attrs":[1.23, 2.44444, 3]}]}' http://localhost:10001</pre>
  * or
- * <pre>curl -v -X POST -H "Content-Type: application/json" --data @clockwork-samples/src/test/resources/gender/feeds.json http://localhost:9999</pre>
+ * <pre>curl -v -X POST -H "Content-Type: application/json" --data @clockwork-samples/src/test/resources/gender/feeds.json http://localhost:10001</pre>
+ *
  * </p>
  *
  * User: zslajchrt

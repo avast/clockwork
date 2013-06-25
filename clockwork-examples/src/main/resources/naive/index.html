@@ -11,7 +11,6 @@
         function guess(height, weight, feet) {
             var input = {attrs: [height, weight, feet]};
             var dimensions = JSON.stringify(input);
-            alert(input);
 
             $.ajax({
                 type: "POST",
