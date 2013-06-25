@@ -1,6 +1,8 @@
 package com.avast.clockwork;
 
 /**
+ * A utility key-value representation.
+ * <p/>
  * User: slajchrt
  * Date: 1/14/12
  * Time: 3:45 PM

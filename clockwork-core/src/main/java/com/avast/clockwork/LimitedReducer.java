@@ -18,7 +18,7 @@ public abstract class LimitedReducer<IK, IV, OK, OV> extends Reducer<IK, IV, OK,
     @Override
     final protected void reduce(IK inputKey, SuspendableIterator<IV> inputValues, Context context)
             throws SuspendExecution, Exception {
-        reduce_(inputKey, new LimitedIterable<IV>(inputValues, limit), context);
+        reduce_(inputKey, new LimitedIterator<IV>(inputValues, limit), context);
     }
 
     abstract protected void reduce_(IK inputKey, SuspendableIterator<IV> inputValues, Context context)

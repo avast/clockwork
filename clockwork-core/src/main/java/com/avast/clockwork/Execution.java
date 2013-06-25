@@ -6,6 +6,9 @@ import com.google.common.base.Preconditions;
 import java.util.*;
 
 /**
+ * This is the principal component of the Clockwork framework representing the execution flow of key-value pairs
+ * through a series of transformers.
+ * <p/>
  * User: slajchrt
  * Date: 1/14/12
  * Time: 3:28 PM
@@ -90,7 +93,7 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
             TransformerStep transformerStep = lastStep;
             TransformerInstance lastInst = null;
             do {
-                Transformer transformer = transformerStep.transformerPrototype.clone();
+                Transformer transformer = transformerStep.transformerPrototype;
                 TransformerInstance transformerInstance = transformer instanceof Mapper ?
                         new MapperInstance((Mapper) transformer, lastInst) :
                         new ReducerInstance((Reducer) transformer, lastInst);
@@ -122,6 +125,13 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         return context;
     }
 
+    /**
+     * Emits the key-value pair to the first transformer. If there is no transformer it goes directly to the accumulator.
+     * @param key the input key
+     * @param value the input value
+     * @param context the context
+     * @throws Exception
+     */
     public void emit(IK key, IV value, Context context) throws Exception {
         this.context = context;
         try {
@@ -131,12 +141,52 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         }
     }
 
+    /**
+     * Emits the key and the associated values to the first transformer. If there is no transformer it goes directly to the accumulator.
+     * @param key the input key
+     * @param values the input values associated with the key
+     * @param context the context
+     * @throws Exception
+     */
     public void emit(IK key, Iterator<IV> values, Context context) throws Exception {
         this.context = context;
         try {
             emit(key, values);
         } finally {
             this.context = null;
+        }
+    }
+
+    /**
+     * Emits the key-value pair to the first transformer. If there is no transformer it goes directly to the accumulator.
+     * @param key the input key
+     * @param value the input value
+     * @throws Exception
+     */
+    @Override
+    public void emit(IK key, IV value) throws Exception {
+        enter(this);
+        try {
+            emitForStep(firstInstance, key, value);
+            incEmitCounter();
+        } finally {
+            leave();
+        }
+    }
+
+    /**
+     * Emits the key-value pair to the first transformer. If there is no transformer it goes directly to the accumulator.
+     * @param key the input key
+     * @param values the input values associated with the key
+     * @throws Exception
+     */
+    public void emit(IK key, Iterator<IV> values) throws Exception {
+        enter(this);
+        try {
+            emitForStep(firstInstance, key, values);
+            incEmitCounter();
+        } finally {
+            leave();
         }
     }
 
@@ -168,27 +218,6 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
             if ((emitCounter + 1) % execConfig.flushModulo == 0) {
                 flush();
             }
-        }
-    }
-
-    @Override
-    public void emit(IK key, IV value) throws Exception {
-        enter(this);
-        try {
-            emitForStep(firstInstance, key, value);
-            incEmitCounter();
-        } finally {
-            leave();
-        }
-    }
-
-    public void emit(IK key, Iterator<IV> values) throws Exception {
-        enter(this);
-        try {
-            emitForStep(firstInstance, key, values);
-            incEmitCounter();
-        } finally {
-            leave();
         }
     }
 
@@ -237,10 +266,23 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         execution.emitForStep(next, key, value);
     }
 
+    /**
+     * @return the execution associated with the current thread
+     */
     public static Execution getExecution() {
         return executionStackTL.get().peek();
     }
 
+    /**
+     * Allows sending the key and the associated values to an execution. The execution is constructed from
+     * the transformers passed as arguments. The output key-value pair is passed to the output function.
+     * @param key the input key
+     * @param values the input values associated with the key
+     * @param context the context
+     * @param output the output function receiving the output key-value pair
+     * @param transformers the transformers for constructing the execution
+     * @throws Exception
+     */
     public static <IK, IV, OK, OV> void execute(IK key, Iterator<IV> values, Context context,
                                                 Function<Map.Entry<OK, OV>, Void> output,
                                                 AbstractTransformer<?, ?, ?, ?>... transformers) throws Exception {
@@ -255,6 +297,10 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         return transformerChainStepMap.get(emitter);
     }
 
+    /**
+     * Flushes this execution leading to releasing and stopping all reducer instances (see {@link ReducerEmitter}).
+     * @throws Exception
+     */
     public void flush() throws Exception {
         enter(this);
         try {
@@ -270,6 +316,10 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         }
     }
 
+    /**
+     * Closes this execution.
+     * @throws Exception
+     */
     public void close() throws Exception {
         try {
             flush();
@@ -294,14 +344,23 @@ public class Execution<IK, IV, OK, OV> implements Emitter<IK, IV> {
         }
     }
 
+    /**
+     * @return a new execution builder
+     */
     public static FirstStep newBuilder() {
         return new FirstStep(new ExecutionConfig());
     }
 
+    /**
+     * @return a new execution builder pre-configured with the execution configuration.
+     */
     public static FirstStep newBuilder(ExecutionConfigBuilder executionConfigBuilder) {
         return new FirstStep(executionConfigBuilder.getExecConfig());
     }
 
+    /**
+     * @return a new execution builder pre-configured with the transformers and the accumulator.
+     */
     public static <OK, OV> Builder<?, ?, OK, OV> newBuilder(Collection<AbstractTransformer<?, ?, ?, ?>> transformers,
                                                             Accumulator<OK, OV> accumulator) {
         BuilderStep step = Execution.newBuilder();

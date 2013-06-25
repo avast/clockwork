@@ -4,6 +4,8 @@ import de.matthiasmann.continuations.SuspendExecution;
 import javolution.util.FastComparator;
 
 /**
+ * The reducer component. It typically aggregates the values associated with a key.
+ * <p/>
  * User: slajchrt
  * Date: 1/12/12
  * Time: 2:21 PM
@@ -26,6 +28,14 @@ public abstract class Reducer<IK, IV, OK, OV> extends AbstractTransformer<IK, IV
         this.keyComparator = keyComparator;
     }
 
+    /**
+     * Aggregates the input values associated with the input key.
+     * @param inputKey the input key
+     * @param inputValues the input value
+     * @param context the context
+     * @throws SuspendExecution
+     * @throws Exception
+     */
     protected abstract void reduce(IK inputKey, SuspendableIterator<IV> inputValues, Context context)
             throws SuspendExecution, Exception;
 

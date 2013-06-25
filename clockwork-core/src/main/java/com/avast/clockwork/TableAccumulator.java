@@ -6,6 +6,10 @@ import com.google.common.collect.Lists;
 import java.util.*;
 
 /**
+ * A general purpose accumulator implementation based on {@link Map}. It is stores the key-value pairs to the map
+ * instance. In case an already existing key is being inserted it either throws an exception or combines the
+ * existing value with the new value by means of a special reducer called combiner.
+ * <p/>
  * User: slajchrt
  * Date: 1/14/12
  * Time: 7:57 PM
@@ -19,6 +23,10 @@ public class TableAccumulator<K, V> implements Accumulator<K, V> {
         this(null, null);
     }
 
+    /**
+     * @param comparator the key comparator or null if no sorting
+     * @param combiner the combiner used when a duplicate key is inserted or null
+     */
     protected TableAccumulator(Comparator<? super K> comparator, Reducer<K, V, K, V> combiner) {
         this.table = comparator == null ? new HashMap<K, V>() : new TreeMap<K, V>(comparator);
         this.combiner = combiner;
@@ -52,7 +60,6 @@ public class TableAccumulator<K, V> implements Accumulator<K, V> {
         }
 
     }
-
 
     @Override
     public synchronized void close() throws Exception {

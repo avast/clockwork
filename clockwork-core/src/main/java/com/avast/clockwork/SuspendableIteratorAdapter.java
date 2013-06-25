@@ -5,6 +5,8 @@ import de.matthiasmann.continuations.SuspendExecution;
 import java.util.Iterator;
 
 /**
+ * It adapts the traditional {@link Iterator Java iterator} to the {@link SuspendableIterator suspendable one}.
+ * <p/>
  * User: slajchrt
  * Date: 9/15/12
  * Time: 12:04 PM

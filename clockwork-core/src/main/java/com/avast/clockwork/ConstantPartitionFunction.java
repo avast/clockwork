@@ -1,6 +1,8 @@
 package com.avast.clockwork;
 
 /**
+ * This partition function resolves all key-value pairs to the same partition.
+ * <p/>
  * User: slajchrt
  * Date: 9/14/12
  * Time: 5:01 PM

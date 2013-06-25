@@ -7,9 +7,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * This class makes invoking executions easier in a multi-threaded environment. Passing a key-value pair to an execution
+ * is done in a task executed by the encapsulated executor. Each submitting task borrows an execution from the execution
+ * pool and returns it after the key-value pair is sent to the execution.
+ * <p/>
  * User: zslajchrt
  * Date: 6/14/13
  * Time: 4:51 PM
+ * @see ExecutionPool
  */
 public class Submitter<IK, IV, OK, OV> {
 

@@ -9,6 +9,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
+ * This class is responsible for managing reducer instances. It holds the map associating keys and reducer instances.
+ * The reducers are removed from the map when they exit the reduce method (i.e. when flushing the execution or using
+ * {@link LimitedIterator the limited iterator}).
+ * <p/>
  * User: slajchrt
  * Date: 1/12/12
  * Time: 8:31 PM
