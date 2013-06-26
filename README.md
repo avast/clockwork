@@ -28,3 +28,23 @@ public class WordCounter extends Reducer<String, Long, String, Long> {
     }
 }
 ```
+
+```java
+Execution<Long, String, String, Long> execution = Execution.newBuilder()
+    .mapper(new WordSplitter())
+    .reducer(new WordCounter())
+    .accumulator(new TableAccumulator<String, Long>())
+    .build();
+```
+
+```java
+long counter = 0;
+BufferedReader reader =
+    new BufferedReader(new FileReader(fileName));
+String line;
+while ((line = reader.readLine()) != null) {
+    execution.emit(counter++, line);
+}
+
+execution.close();
+```
