@@ -3,6 +3,14 @@ clockwork
 
 An adoption of the map-reduce paradigm based on the concept of coroutines to the world of stream data processing.
 
+If you have some experience of writing offline jobs for Hadoop or other map-reduce frameworks you will find Clockwork
+very familiar since it uses the same programming model. The important difference is that, in contrast to Hadoop, Clockwork
+is primarily designed for writing online tasks like processing text stream data (like [Twitter firehose](https://dev.twitter.com/docs/streaming-apis/streams/public)).
+while thinking in the map-reduce way.
+
+The following code demonstrates how the classical map-reduce introductory example - The Word Count - can be rewritten
+to Clockwork. The original Hadoop example can be found here: [Hadoop WordCount tutorial](http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial/ht_topic_5.html)
+
 ```java
 public class WordSplitter extends Mapper<Long, String, String, Long> {
     @Override
