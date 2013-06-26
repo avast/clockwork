@@ -18,7 +18,7 @@
 	<key>GuidesVisible</key>
 	<string>YES</string>
 	<key>ImageCounter</key>
-	<integer>38</integer>
+	<integer>40</integer>
 	<key>ImageLinkBack</key>
 	<array>
 		<dict/>
@@ -46,6 +46,8 @@
 	</array>
 	<key>ImageList</key>
 	<array>
+		<string>image39.png</string>
+		<string>image38.png</string>
 		<string>image37.png</string>
 		<string>image35.png</string>
 		<string>image34.png</string>
@@ -59,8 +61,6 @@
 		<string>image20.png</string>
 		<string>image19.png</string>
 		<string>image18.png</string>
-		<string>image17.png</string>
-		<string>image15.png</string>
 		<string>image8.png</string>
 		<string>image7.png</string>
 		<string>image6.png</string>
@@ -196,7 +196,7 @@
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2013-06-25 19:21:32 +0000</string>
+	<string>2013-06-26 10:09:37 +0000</string>
 	<key>Modifier</key>
 	<string>Zbyněk Šlajchrt</string>
 	<key>NotesVisible</key>
@@ -7144,6 +7144,66 @@ Counter}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
+					<string>{{30, 251}, {670, 168}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>33856</integer>
+					<key>ImageID</key>
+					<integer>39</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{30, 60}, {673.9285888671875, 150}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>ID</key>
+					<integer>33855</integer>
+					<key>ImageID</key>
+					<integer>38</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
 					<string>{{8, 12}, {192, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
@@ -7189,66 +7249,6 @@ Counter}</string>
 					</dict>
 					<key>Wrap</key>
 					<string>NO</string>
-				</dict>
-				<dict>
-					<key>Bounds</key>
-					<string>{{20.500014928597675, 89.831752473397714}, {650, 139}}</string>
-					<key>Class</key>
-					<string>ShapedGraphic</string>
-					<key>ID</key>
-					<integer>4</integer>
-					<key>ImageID</key>
-					<integer>17</integer>
-					<key>Shape</key>
-					<string>Rectangle</string>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-					</dict>
-				</dict>
-				<dict>
-					<key>Bounds</key>
-					<string>{{20.500014465296669, 313.08409680194916}, {692, 166}}</string>
-					<key>Class</key>
-					<string>ShapedGraphic</string>
-					<key>ID</key>
-					<integer>3</integer>
-					<key>ImageID</key>
-					<integer>15</integer>
-					<key>Shape</key>
-					<string>Rectangle</string>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-					</dict>
 				</dict>
 			</array>
 			<key>GridInfo</key>
@@ -14994,7 +14994,7 @@ Q&amp;A}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>32</integer>
+		<integer>24</integer>
 		<key>ExpandedCanvases</key>
 		<array>
 			<dict>
@@ -15003,7 +15003,7 @@ Q&amp;A}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{84, 4}, {1241, 874}}</string>
+		<string>{{50, 1248}, {1241, 874}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>

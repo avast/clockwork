@@ -15,12 +15,12 @@ import de.matthiasmann.continuations.SuspendExecution;
 
 public class WordCounter extends Reducer<String, Long, String, Long> {
     @Override
-    protected void reduce(String inputKey, SuspendableIterator<Long> inputValues, Context context)
+    protected void reduce(String word, SuspendableIterator<Long> occurrences, Context context)
             throws SuspendExecution, Exception {
         long counter = 0;
-        while (inputValues.hasNext()) {
-            counter += inputValues.next();
+        while (occurrences.hasNext()) {
+            counter += occurrences.next();
         }
-        emit(inputKey, counter);
+        emit(word, counter);
     }
 }

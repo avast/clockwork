@@ -14,8 +14,8 @@ import com.google.common.base.Splitter;
 
 public class WordSplitter extends Mapper<Long, String, String, Long> {
     @Override
-    protected void map(Long inputKey, String inputValue, Context context) throws Exception {
-        Iterable<String> splits = Splitter.on(" ").trimResults().split(inputValue);
+    protected void map(Long lineCounter, String line, Context context) throws Exception {
+        Iterable<String> splits = Splitter.on(" ").trimResults().split(line);
         for (String split : splits) {
             emit(split, 1L);
         }
